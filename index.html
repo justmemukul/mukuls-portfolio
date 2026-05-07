@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <title>justmemukul.Data — Data/Business Analyst Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ink': { 700: '#1a1a1a', 800: '#121212', 900: '#0a0a0a' },
+                        'neon-lime': '#ccff00',
+                        'cyan': '#00f0ff',
+                        'zinc-900': '#1a1a1a',
+                        'foreground': '#f5f5f5',
+                    },
+                    fontFamily: {
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                        'display': ['"Cabinet Grotesk"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --background: 0 0% 4%;
+            --foreground: 0 0% 96%;
+        }
+        body {
+            margin: 0;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        ::selection {
+            background: #ccff00;
+            color: #0a0a0a;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ccff00;
+        }
+        .label-mono {
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a1a1aa;
+        }
+        .grid-bg {
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+        .text-neon {
+            color: #ccff00;
+            text-shadow: 0 0 18px rgba(204, 255, 0, 0.35);
+        }
+        .text-cyan {
+            color: #00f0ff;
+        }
+        .hover-lift {
+            transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), border-color 280ms ease, background-color 280ms ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+        }
+        
+        /* Marquee Animation CSS */
+        .rfm-marquee-container {
+            overflow-x: hidden; display: flex; flex-direction: row; position: relative; width: 100%;
+        }
+        .rfm-marquee {
+            flex: 0 0 auto; min-width: 100%; z-index: 1; display: flex; flex-direction: row; align-items: center;
+            animation: scroll 40s linear infinite;
+        }
+        .rfm-child { flex: 0 0 auto; margin-right: 2rem; }
+        @keyframes scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="bg-ink-900 text-foreground min-h-screen">
+    
+    <main data-testid="portfolio-root">
+        <nav data-testid="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-ink-900/80 backdrop-blur-md border-b border-white/10">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+                <a href="#top" data-testid="nav-logo" class="flex items-center gap-2 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-neon-lime"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" x2="20" y1="19" y2="19"></line></svg>
+                    <span class="font-mono text-sm tracking-tight">
+                        <span class="text-white">&lt;justmemukul</span><span class="text-neon-lime">.Data</span><span class="text-white"> /&gt;</span>
+                    </span>
+                </a>
+                <ul class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <li><a href="#about" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">ABOUT</a></li>
+                    <li><a href="#skills" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">SKILLS</a></li>
+                    <li><a href="#projects" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">PROJECTS</a></li>
+                    <li><a href="#experience" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">EXPERIENCE</a></li>
+                    <li><a href="https://docs.google.com/document/d/1FgK1Tkr3fInPMCPIgVScswILKUZyGhwmZ8llGgusdp4/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">RESUME</a></li>
+                    <li><a href="#contact" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">CONTACT</a></li>
+                </ul>
+                <a href="mailto:shankarmukul87@gmail.com" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-neon-lime text-neon-lime hover:bg-neon-lime hover:text-ink-900 transition-colors font-mono text-[11px] tracking-[0.22em] uppercase">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>Email
+                </a>
+            </div>
+        </nav>
+
+        <section id="top" data-testid="hero-section" class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-16">
+            <div class="absolute inset-0 -z-10">
+                <div class="absolute inset-0 bg-ink-900/70"></div>
+                <div class="absolute inset-0 grid-bg opacity-60"></div>
+            </div>
+            
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 w-full">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                    <span class="label-mono">[ 01 / Portfolio · v2.0 ]</span>
+                    <span class="label-mono hidden sm:inline-flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> Delhi, IN — UTC+5:30
+                    </span>
+                </div>
+                
+                <div class="mt-10 lg:mt-16 grid grid-cols-12 gap-6">
+                    <h1 class="col-span-12 font-display font-black text-[14vw] sm:text-[12vw] lg:text-[10vw] leading-[0.85] tracking-tight uppercase">
+                        DATA THAT
+                        <span class="text-neon">DECIDES</span> <span class="text-white/30">/</span> <span class="text-cyan">NOT JUST</span><br>
+                        <span class="italic" style="text-transform: none;">describes.</span>
+                    </h1>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-12 gap-6 border-t border-white/10 pt-8 pb-32">
+                    <div class="col-span-12 lg:col-span-5">
+                        <p class="label-mono mb-3">[ 02 · About ]</p>
+                        <p class="font-mono text-sm leading-relaxed text-zinc-300 max-w-md">I'm <span class="text-white">Mukul</span>, an aspiring Data Scientist and Financial Analyst who transforms raw, operational data into clean, practical business growth strategies. I blend analytical rigor with on-the-ground operational insights.</p>
+                    </div>
+                    <div class="col-span-12 lg:col-span-4 lg:col-start-7">
+                        <p class="label-mono mb-3">[ 03 · Currently ]</p>
+                        <ul class="space-y-2 font-mono text-sm">
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-zinc-400">Target Role</span><span class="text-white">Sr. Data Scientist / Financial Analyst</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-zinc-400">Stack</span><span class="text-neon-lime">SQL · Power BI · Excel · Python</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-zinc-400">Status</span><span class="text-cyan">Available for Opportunities</span></li>
+                            <li class="flex justify-between pt-2">
+                                <a href="https://docs.google.com/document/d/1FgK1Tkr3fInPMCPIgVScswILKUZyGhwmZ8llGgusdp4/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-neon-lime hover:text-white transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M15 18a3 3 0 1 0-6 0"></path><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path></svg>
+                                    View Resume
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 border-t border-b border-white/10 bg-ink-900/90 backdrop-blur-md py-3">
+                <div class="rfm-marquee-container">
+                    <div class="rfm-marquee">
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>SELECT churn_rate FROM customers WHERE cohort = 'Q4_2025'</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>df.groupby('segment').agg({'ltv': 'mean'})</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>Power BI · SQL Server · Pandas · Matplotlib</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>model.fit(X_train, y_train, epochs=42)</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>WITH funnel AS (SELECT step. COUNT(*) FROM analytics_event GROUP BY step)</span></div>
+                    </div>
+                    <div class="rfm-marquee" aria-hidden="true">
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>SELECT churn_rate FROM customers WHERE cohort = 'Q4_2025'</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>df.groupby('segment').agg({'ltv': 'mean'})</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>Power BI · SQL Server · Pandas · Matplotlib</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>model.fit(X_train, y_train, epochs=42)</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>WITH funnel AS (SELECT step. COUNT(*) FROM analytics_event GROUP BY step)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" data-testid="about-section" class="relative">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+                <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
+                    <div>
+                        <p class="label-mono mb-3">[ Section · 01 ]</p>
+                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">About<span class="text-neon">.</span></h2>
+                    </div>
+                    <p class="hidden md:block label-mono">/ readme.md</p>
+                </div>
+                
+                <div class="grid grid-cols-12 gap-6">
+                    
+                    <div class="col-span-12 md:col-span-8 border border-white/10 bg-ink-800 p-8 lg:p-12 hover-lift hover:border-white/20 flex flex-col justify-between">
+                        <div>
+                            <p class="label-mono mb-4">[ bio.txt ]</p>
+                            <p class="font-display text-2xl lg:text-3xl leading-snug tracking-tight text-zinc-200">I approach data with an operational mindset, ensuring every analysis is <span class="text-neon">practical</span>, grounded in reality, and built to solve real problems.</p>
+                            <p class="mt-6 font-mono text-sm text-zinc-400 leading-relaxed max-w-2xl">With 1 year and 8 months of experience managing inventory, supply chains, and business operations as a Stock Manager, I understand the real-world implications of data. Now, I am pivoting my career to focus entirely on Data Science and Financial Analysis, leveraging my deep expertise in SQL, Power BI, Advanced Excel (including Pivot Tables), and Python.</p>
+                        </div>
+                        
+                        <div class="mt-12 pt-8 border-t border-white/10">
+                            <p class="label-mono mb-4">[ education_certs.json ]</p>
+                            <h3 class="font-mono text-xl text-zinc-200 mb-6 uppercase tracking-wider">Education & Certs</h3>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-sm text-zinc-400">
+                                <li>
+                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>B.Com (Hons)</div>
+                                    <div class="pl-6 text-xs text-zinc-500">DU SOL (Graduating late 2027)</div>
+                                </li>
+                                <li>
+                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>Data Analytics Certification</div>
+                                    <div class="pl-6 text-xs text-zinc-500">Tute Dude</div>
+                                </li>
+                                <li>
+                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>'O' Level Computer Cert.</div>
+                                    <div class="pl-6 text-xs text-zinc-500">MSME</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 md:col-span-4 border border-white/10 bg-ink-800 overflow-hidden hover-lift hover:border-neon-lime/40">
+                        <div class="relative h-full min-h-[350px]">
+                            <img alt="Mukul Shankar" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 absolute inset-0" src="https://i.postimg.cc/ZRWK7Dmw/Whats-App-Image-2026-05-08-at-1-21-46-AM.png">
+                            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/10 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
+                                <span class="label-mono text-white">Mukul S.</span>
+                                <span class="label-mono text-neon-lime">/ ANALYST</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" data-testid="skills-section" class="relative border-t border-white/10 overflow-hidden">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+                <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
+                    <div>
+                        <p class="label-mono mb-3">[ Section · 02 ]</p>
+                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">The <span class="text-neon">Stack</span></h2>
+                    </div>
+                    <p class="hidden md:block label-mono">/ skills.json</p>
+                </div>
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-4 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:bg-ink-700 transition-colors">
+                        <p class="label-mono mb-4 text-neon-lime">/ Core</p>
+                        <ul class="space-y-3 font-mono text-sm text-zinc-200">
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>SQL (SSMS)</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Python</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Advanced Excel</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Pivot Tables</span><span class="text-zinc-600 text-xs">●</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-12 lg:col-span-4 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:bg-ink-700 transition-colors">
+                        <p class="label-mono mb-4 text-neon-lime">/ Visualization & Tools</p>
+                        <ul class="space-y-3 font-mono text-sm text-zinc-200">
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Power BI</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Excel Dashboards</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Jupyter / Pandas</span><span class="text-zinc-600 text-xs">●</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-12 lg:col-span-4 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:bg-ink-700 transition-colors">
+                        <p class="label-mono mb-4 text-neon-lime">/ Hardware & Systems</p>
+                        <ul class="space-y-3 font-mono text-sm text-zinc-200">
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>PC Building</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>System Troubleshooting</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Hardware Benchmarking</span><span class="text-zinc-600 text-xs">●</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" data-testid="projects-section" class="relative border-t border-white/10">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+                <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
+                    <div>
+                        <p class="label-mono mb-3">[ Section · 03 ]</p>
+                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">Selected <span class="text-neon">Work</span></h2>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a href="https://github.com/justmemukul/retail_sales_dashboard" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                        <div class="flex items-start justify-between mb-8">
+                            <span class="font-mono text-xs text-zinc-500">[ 01 ]</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Retail Sales Analysis</h3>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Comprehensive view of revenue and operations</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Built an interactive dashboard to track key retail metrics, using Excel Pivot Tables and SQL to identify trends and streamline reporting.</p>
+                        <div class="mt-auto pt-8 flex flex-wrap gap-2">
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">SQL</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">EXCEL</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/justmemukul/Uber-Data-Analysis-2025" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                        <div class="flex items-start justify-between mb-8">
+                            <span class="font-mono text-xs text-zinc-500">[ 02 ]</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Uber Customer Data Analysis</h3>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Behavioral insights from ride-sharing data (2025)</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Analyzed behavioral insights from 2025 Uber ride data, identifying patterns and key trends in a multi-state operational area.</p>
+                        <div class="mt-auto pt-8 flex flex-wrap gap-2">
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">POWER BI</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">DATA VISUALIZATION</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/justmemukul/sql_project-retail-sales-" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full md:col-span-2 lg:col-span-1">
+                        <div class="flex items-start justify-between mb-8">
+                            <span class="font-mono text-xs text-zinc-500">[ 03 ]</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Finding Insights from Database</h3>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Database analysis and extraction</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Leveraged complex SQL queries to extract meaningful insights and patterns from a retail sales database, aiding in data-driven strategy.</p>
+                        <div class="mt-auto pt-8 flex flex-wrap gap-2">
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">SQL</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">DATA EXTRACTION</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" data-testid="experience-section" class="relative border-t border-white/10">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+                <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
+                    <div>
+                        <p class="label-mono mb-3">[ Section · 04 ]</p>
+                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight"><span class="text-neon">git</span> log --career</h2>
+                    </div>
+                </div>
+                <ol class="relative border-l border-white/10 pl-8 lg:pl-12 space-y-14">
+                    <li class="relative">
+                        <span class="absolute -left-[37px] lg:-left-[49px] top-1 w-3 h-3 border border-neon-lime bg-ink-900 rotate-45"></span>
+                        <p class="label-mono text-neon-lime">1 Year, 8 Months</p>
+                        <h3 class="font-display text-3xl lg:text-4xl font-bold tracking-tight mt-3">Stock Manager</h3>
+                        <p class="mt-1 font-mono text-xs text-zinc-500 uppercase tracking-[0.22em]">Delhi</p>
+                        <ul class="mt-5 space-y-3 max-w-3xl">
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3"><span class="text-neon-lime select-none">→</span>Managed daily inventory operations, ensuring high accuracy and reducing stock discrepancies.</li>
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3"><span class="text-neon-lime select-none">→</span>Optimized supply chain reporting by standardizing data collection and tracking methods.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="contact" data-testid="contact-section" class="relative border-t border-white/10 bg-ink-900 overflow-hidden">
+            <div class="absolute inset-0 grid-bg opacity-30"></div>
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 pt-24 lg:pt-32 pb-12 relative z-10">
+                
+                <div class="mb-16">
+                    <p class="label-mono mb-4">[ Section · 05 · execute_query() ]</p>
+                    <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight text-white">Let's build <br><span class="text-neon">something data-driven</span>.</h2>
+                    <p class="mt-6 font-mono text-sm text-zinc-400 max-w-xl leading-relaxed">Whether you need help with operational analytics, robust SQL data extraction, or a complete Power BI overhaul, I'm ready to turn your raw data into strategy.</p>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <a href="https://wa.me/919310125549" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">WhatsApp</span>
+                        <span class="font-mono text-[10px] mt-1 opacity-70">9310125549</span>
+                    </a>
+
+                    <a href="mailto:shankarmukul87@gmail.com" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                        <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">Email</span>
+                        <span class="font-mono text-[9px] sm:text-[10px] mt-1 opacity-70 break-all text-center px-2">shankarmukul87@gmail.com</span>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/mukul-shankar/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">LinkedIn</span>
+                        <span class="font-mono text-[10px] mt-1 opacity-70">Connect</span>
+                    </a>
+
+                    <a href="https://github.com/justmemukul" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                        <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">GitHub</span>
+                        <span class="font-mono text-[10px] mt-1 opacity-70">View Code</span>
+                    </a>
+
+                </div>
+                
+                <div class="mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10 pt-6">
+                    <p class="font-mono text-xs text-zinc-500">© 2026 Mukul Shankar — All queries resolved.</p>
+                    <p class="font-mono text-[10px] tracking-[0.22em] uppercase text-zinc-600">END OF FILE — EOF · 0x1A</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
