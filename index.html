@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#000000">
-    <title>justmemukul.Data — Data/Business Analyst Portfolio</title>
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Mukul — MIS Executive, Data Analyst & Business Automation Architect specializing in FMS, Financial Management Systems, Google Sheets Canvas Dashboards, Python & SQL.">
+    <title>justmemukul.Data — Mukul | MIS, Data Analytics & Automation Portfolio</title>
     
+    <!-- Google Fonts: JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Fontshare: Cabinet Grotesk (Fixed missing display font from v2.0) -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800,900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -33,8 +38,8 @@
 
     <style>
         :root {
-            var(--background): 0 0% 4%;
-            var(--foreground): 0 0% 96%;
+            --background: 0 0% 4%;
+            --foreground: 0 0% 96%;
         }
         body {
             margin: 0;
@@ -79,33 +84,59 @@
         }
         .text-cyan {
             color: #00f0ff;
+            text-shadow: 0 0 18px rgba(0, 240, 255, 0.25);
         }
         .hover-lift {
-            transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), border-color 280ms ease, background-color 280ms ease;
+            transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), border-color 280ms ease, background-color 280ms ease, box-shadow 280ms ease;
         }
         .hover-lift:hover {
             transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
         }
         
         /* Marquee Animation CSS */
         .rfm-marquee-container {
-            overflow-x: hidden; display: flex; flex-direction: row; position: relative; width: 100%;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            width: 100%;
         }
         .rfm-marquee {
-            flex: 0 0 auto; min-width: 100%; z-index: 1; display: flex; flex-direction: row; align-items: center;
-            animation: scroll 40s linear infinite;
+            flex: 0 0 auto;
+            min-width: 100%;
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            animation: scroll 42s linear infinite;
         }
-        .rfm-child { flex: 0 0 auto; margin-right: 2rem; }
+        .rfm-marquee-container:hover .rfm-marquee {
+            animation-play-state: paused;
+        }
+        .rfm-child {
+            flex: 0 0 auto;
+            margin-right: 2.5rem;
+        }
         @keyframes scroll {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-100%); }
+        }
+
+        /* Filter active button */
+        .filter-btn.active {
+            background-color: #ccff00;
+            color: #0a0a0a;
+            border-color: #ccff00;
+            font-weight: 600;
         }
     </style>
 </head>
 <body class="bg-ink-900 text-foreground min-h-screen">
     
     <main data-testid="portfolio-root">
-        <nav data-testid="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-ink-900/80 backdrop-blur-md border-b border-white/10">
+        <!-- NAVIGATION -->
+        <nav data-testid="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-ink-900/85 backdrop-blur-md border-b border-white/10">
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
                 <a href="#top" data-testid="nav-logo" class="flex items-center gap-2 group">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-neon-lime"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" x2="20" y1="19" y2="19"></line></svg>
@@ -113,84 +144,154 @@
                         <span class="text-white">&lt;justmemukul</span><span class="text-neon-lime">.Data</span><span class="text-white"> /&gt;</span>
                     </span>
                 </a>
-                <ul class="hidden md:flex items-center gap-6 lg:gap-8">
+
+                <ul class="hidden lg:flex items-center gap-7">
                     <li><a href="#about" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">ABOUT</a></li>
-                    <li><a href="#skills" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">SKILLS</a></li>
+                    <li><a href="#skills" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">STACK</a></li>
+                    <li><a href="#automation" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-cyan transition-colors">AUTOMATION</a></li>
                     <li><a href="#projects" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">PROJECTS</a></li>
                     <li><a href="#experience" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">EXPERIENCE</a></li>
                     <li><a href="https://docs.google.com/document/d/1Nz-2QSjDGNgMTKBiSAKxOZkOMMpI1NqYLd9aqzv5rVQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">RESUME</a></li>
                     <li><a href="#contact" class="font-mono text-[11px] tracking-[0.22em] text-zinc-400 hover:text-neon-lime transition-colors">CONTACT</a></li>
                 </ul>
-                <a href="mailto:shankarmukul87@gmail.com" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-neon-lime text-neon-lime hover:bg-neon-lime hover:text-ink-900 transition-colors font-mono text-[11px] tracking-[0.22em] uppercase">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>Email
-                </a>
+
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://wa.me/919310125549" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 border border-white/15 text-zinc-300 hover:border-cyan hover:text-cyan transition-colors font-mono text-[11px] tracking-[0.18em] uppercase">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>Freelance
+                    </a>
+                    <a href="mailto:shankarmukul87@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 border border-neon-lime text-neon-lime hover:bg-neon-lime hover:text-ink-900 transition-colors font-mono text-[11px] tracking-[0.22em] uppercase">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>Email
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" aria-label="Toggle Menu" class="lg:hidden p-2 border border-white/10 text-zinc-300 hover:text-neon-lime hover:border-neon-lime">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+
+            <!-- Mobile Drawer -->
+            <div id="mobile-menu" class="hidden lg:hidden bg-ink-900 border-b border-white/10 px-6 py-6 space-y-4 font-mono text-xs tracking-[0.2em]">
+                <a href="#about" class="block text-zinc-300 hover:text-neon-lime py-1">01 / ABOUT</a>
+                <a href="#skills" class="block text-zinc-300 hover:text-neon-lime py-1">02 / STACK</a>
+                <a href="#automation" class="block text-cyan hover:text-neon-lime py-1">03 / FREELANCE & AUTOMATION</a>
+                <a href="#projects" class="block text-zinc-300 hover:text-neon-lime py-1">04 / PROJECTS</a>
+                <a href="#experience" class="block text-zinc-300 hover:text-neon-lime py-1">05 / EXPERIENCE</a>
+                <a href="https://docs.google.com/document/d/1Nz-2QSjDGNgMTKBiSAKxOZkOMMpI1NqYLd9aqzv5rVQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="block text-neon-lime py-1">06 / VIEW RESUME ↗</a>
+                <a href="#contact" class="block text-zinc-300 hover:text-neon-lime py-1">07 / CONTACT</a>
             </div>
         </nav>
 
-        <section id="top" data-testid="hero-section" class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-16">
+        <!-- HERO SECTION -->
+        <section id="top" data-testid="hero-section" class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden pt-20">
             <div class="absolute inset-0 -z-10">
                 <div class="absolute inset-0 bg-ink-900/70"></div>
                 <div class="absolute inset-0 grid-bg opacity-60"></div>
             </div>
             
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 w-full">
-                <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                    <span class="label-mono">[ 01 / Portfolio · v2.0 ]</span>
-                    <span class="label-mono hidden sm:inline-flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> Delhi, IN — UTC+5:30
+                <div class="flex flex-wrap items-center justify-between border-b border-white/10 pb-4 gap-4">
+                    <span class="label-mono flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-neon-lime animate-pulse"></span>
+                        [ 01 / Portfolio · v3.0 · Systems & Analytics ]
+                    </span>
+                    <span class="label-mono inline-flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-neon-lime"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        Delhi, IN — <span id="live-time" class="text-zinc-300">UTC+5:30</span>
                     </span>
                 </div>
                 
-                <div class="mt-10 lg:mt-16 grid grid-cols-12 gap-6">
-                    <h1 class="col-span-12 font-display font-black text-[14vw] sm:text-[12vw] lg:text-[10vw] leading-[0.85] tracking-tight uppercase">
-                        DATA THAT<br>
-                        <span class="text-neon">DECIDES</span> <span class="text-white/30">/</span> <span class="text-cyan">NOT JUST</span><br>
-                        <span class="italic" style="text-transform: none;">describes.</span>
-                    </h1>
+                <div class="mt-10 lg:mt-14 grid grid-cols-12 gap-6">
+                    <div class="col-span-12">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-neon-lime/30 bg-neon-lime/5 font-mono text-[11px] tracking-[0.2em] uppercase text-neon-lime">
+                            <span>&gt;_ MIS Executive @ AM Legal Services</span>
+                            <span class="text-white/30">|</span>
+                            <span class="text-cyan">Freelance Automation Architect</span>
+                        </div>
+                        <h1 class="font-display font-black text-[13vw] sm:text-[11vw] lg:text-[8.8vw] leading-[0.86] tracking-tight uppercase">
+                            SYSTEMS THAT<br>
+                            <span class="text-neon">AUTOMATE</span> <span class="text-white/30">/</span> <span class="text-cyan">DATA THAT</span><br>
+                            <span class="italic font-normal" style="text-transform: none;">decides.</span>
+                        </h1>
+                    </div>
                 </div>
                 
                 <div class="mt-12 grid grid-cols-12 gap-6 border-t border-white/10 pt-8 pb-32">
                     <div class="col-span-12 lg:col-span-5">
-                        <p class="label-mono mb-3">[ 02 · About ]</p>
-                        <p class="font-mono text-sm leading-relaxed text-zinc-300 max-w-md">I'm <span class="text-white">Mukul</span>, an aspiring Data Scientist and Financial Analyst who transforms raw, operational data into clean, practical business growth strategies. I blend analytical rigor with on-the-ground operational insights.</p>
+                        <p class="label-mono mb-3">[ 02 · Executive Summary ]</p>
+                        <p class="font-mono text-sm leading-relaxed text-zinc-300 max-w-lg">
+                            I'm <span class="text-white font-semibold">Mukul</span>—an MIS Executive, Data Analyst, and Workflow Automation Architect. I design end-to-end operational ecosystems (<span class="text-neon-lime">FMS, FSS, Financial Management Systems</span>), interactive <span class="text-cyan">Google Sheets Canvas</span> &amp; Power BI dashboards, and Python/SQL pipelines that eliminate manual bottlenecks and turn messy business operations into self-running machines.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <a href="#automation" class="px-5 py-2.5 bg-neon-lime text-ink-900 font-mono text-xs font-bold tracking-[0.18em] uppercase hover:bg-white transition-colors">
+                                Automate Your Workflow →
+                            </a>
+                            <a href="#projects" class="px-5 py-2.5 border border-white/20 text-white font-mono text-xs tracking-[0.18em] uppercase hover:border-neon-lime hover:text-neon-lime transition-colors">
+                                Explore Systems
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-span-12 lg:col-span-4 lg:col-start-7">
-                        <p class="label-mono mb-3">[ 03 · Currently ]</p>
-                        <ul class="space-y-2 font-mono text-sm">
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-zinc-400">Target Role</span><span class="text-white">Sr. Data Scientist / Financial Analyst</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-zinc-400">Stack</span><span class="text-neon-lime">SQL · Power BI · Python · Real-time Pipelines</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-zinc-400">Status</span><span class="text-cyan">Available for Opportunities</span></li>
-                            <li class="flex justify-between pt-2">
-                                <a href="https://docs.google.com/document/d/1Nz-2QSjDGNgMTKBiSAKxOZkOMMpI1NqYLd9aqzv5rVQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-neon-lime hover:text-white transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M15 18a3 3 0 1 0-6 0"></path><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path></svg>
-                                    View Resume
-                                </a>
+
+                    <div class="col-span-12 lg:col-span-6 lg:col-start-7">
+                        <p class="label-mono mb-3">[ 03 · Live Telemetry ]</p>
+                        <ul class="space-y-2.5 font-mono text-xs sm:text-sm bg-ink-800/80 border border-white/10 p-5">
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2 gap-1">
+                                <span class="text-zinc-400">Current Role</span>
+                                <span class="text-white font-medium">MIS Executive @ AM Legal Services</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2 gap-1">
+                                <span class="text-zinc-400">Systems Architecture</span>
+                                <span class="text-neon-lime">FMS · FSS · Financial Systems · BCI Frameworks</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2 gap-1">
+                                <span class="text-zinc-400">Core Tech Stack</span>
+                                <span class="text-zinc-200">Apps Script · Sheets Canvas · SQL · Python · Power BI</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-white/5 pb-2 gap-1">
+                                <span class="text-zinc-400">Freelance &amp; Consulting</span>
+                                <span class="text-cyan flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyan animate-ping"></span>Open for Automation &amp; Analytics Projects
+                                </span>
+                            </li>
+                            <li class="flex justify-between items-center pt-1">
+                                <span class="text-zinc-400">Credentials</span>
+                                <div class="flex items-center gap-4">
+                                    <a href="https://docs.google.com/document/d/1Nz-2QSjDGNgMTKBiSAKxOZkOMMpI1NqYLd9aqzv5rVQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-neon-lime hover:text-white transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M15 18a3 3 0 1 0-6 0"></path><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path></svg>
+                                        Resume_Doc
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/mukul-shankar/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-cyan hover:text-white transition-colors">
+                                        LinkedIn ↗
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- MARQUEE -->
             <div class="absolute bottom-0 left-0 right-0 border-t border-b border-white/10 bg-ink-900/90 backdrop-blur-md py-3">
                 <div class="rfm-marquee-container">
                     <div class="rfm-marquee">
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>SELECT churn_rate FROM customers WHERE cohort = 'Q4_2025'</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>df.groupby('segment').agg({'ltv': 'mean'})</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>Power BI · Python · Ingestion Pipeline</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>model.fit(X_train, y_train, epochs=42)</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>WITH funnel AS (SELECT step, COUNT(*) FROM analytics_event GROUP BY step)</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>FMS.triggerMilestone(case_id, SLA_status='ON_TIME')</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-cyan mr-2">&gt;_</span>BCI Framework · FMS · FSS · Financial Management System</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>ScriptApp.newTrigger('sendDelegationAlerts').timeBased().everyDays(1)</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-cyan mr-2">&gt;_</span>Google Sheets Canvas · Power BI · SQL · Python OCR Pipelines</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>SELECT churn_rate, sla_compliance FROM operations WHERE cohort = '2026'</span></div>
                     </div>
                     <div class="rfm-marquee" aria-hidden="true">
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>SELECT churn_rate FROM customers WHERE cohort = 'Q4_2025'</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>df.groupby('segment').agg({'ltv': 'mean'})</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>Power BI · Python · Ingestion Pipeline</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>model.fit(X_train, y_train, epochs=42)</span></div>
-                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>WITH funnel AS (SELECT step, COUNT(*) FROM analytics_event GROUP BY step)</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>FMS.triggerMilestone(case_id, SLA_status='ON_TIME')</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-cyan mr-2">&gt;_</span>BCI Framework · FMS · FSS · Financial Management System</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>ScriptApp.newTrigger('sendDelegationAlerts').timeBased().everyDays(1)</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-cyan mr-2">&gt;_</span>Google Sheets Canvas · Power BI · SQL · Python OCR Pipelines</span></div>
+                        <div class="rfm-child"><span class="font-mono text-xs text-zinc-400"><span class="text-neon-lime mr-2">&gt;_</span>SELECT churn_rate, sla_compliance FROM operations WHERE cohort = '2026'</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 01: ABOUT -->
         <section id="about" data-testid="about-section" class="relative">
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
                 <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
@@ -198,24 +299,51 @@
                         <p class="label-mono mb-3">[ Section · 01 ]</p>
                         <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">About<span class="text-neon">.</span></h2>
                     </div>
-                    <p class="hidden md:block label-mono">/ readme.md</p>
+                    <p class="hidden md:block label-mono">/ system_architect_bio.md</p>
                 </div>
                 
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12 md:col-span-8 border border-white/10 bg-ink-800 p-8 lg:p-12 hover-lift hover:border-white/20 flex flex-col justify-between">
                         <div>
-                            <p class="label-mono mb-4">[ bio.txt ]</p>
-                            <p class="font-display text-2xl lg:text-3xl leading-snug tracking-tight text-zinc-200">I approach data with an operational mindset, ensuring every analysis is <span class="text-neon">practical</span>, grounded in reality, and built to solve real problems.</p>
-                            <p class="mt-6 font-mono text-sm text-zinc-400 leading-relaxed max-w-2xl">With 1 year and 8 months of experience managing inventory, supply chains, and business operations as a Stock Manager, I understand the real-world implications of data. Now, I am pivoting my career to focus entirely on Data Science and Financial Analysis, leveraging my deep expertise in SQL, Power BI, Advanced Excel, and advanced Python architecture environments.</p>
+                            <p class="label-mono mb-4">[ operational_philosophy.txt ]</p>
+                            <p class="font-display text-2xl lg:text-3xl leading-snug tracking-tight text-zinc-200">
+                                I don't just analyze numbers after the fact—I engineer <span class="text-neon">automated operational systems</span> and <span class="text-cyan">decision-ready dashboards</span> that prevent business bottlenecks before they happen.
+                            </p>
+                            <p class="mt-6 font-mono text-sm text-zinc-400 leading-relaxed max-w-3xl">
+                                Currently serving as an <strong class="text-white">MIS Executive at AM Legal Services</strong>, I build full-scale <strong class="text-zinc-200">Flow Management Systems (FMS)</strong>, <strong class="text-zinc-200">Financial Management Systems</strong>, <strong class="text-zinc-200">FSS architectures</strong>, and interactive <strong class="text-zinc-200">Google Sheets Canvas dashboards</strong> aligned with <strong class="text-neon-lime">Rahul Jain's Business Coaching India (BCI)</strong> management frameworks.
+                            </p>
+                            <p class="mt-4 font-mono text-sm text-zinc-400 leading-relaxed max-w-3xl">
+                                Backed by nearly 2 years of hands-on inventory, ledger reconciliation, and operations experience, I bridge the gap between ground-level execution and high-level data science—combining <strong class="text-white">Google Apps Script, Advanced Excel (VBA/Macros), SQL (SSMS), Python, and Power BI</strong> to automate repetitive workflows for organizations and freelance clients alike.
+                            </p>
+                        </div>
+
+                        <!-- Impact Metrics Bar -->
+                        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-white/10">
+                            <div class="p-4 border border-white/5 bg-ink-900/60">
+                                <p class="font-display text-3xl font-black text-neon-lime">10-Step</p>
+                                <p class="font-mono text-[11px] text-zinc-400 mt-1 uppercase tracking-wider">FMS &amp; SLA Workflows</p>
+                            </div>
+                            <div class="p-4 border border-white/5 bg-ink-900/60">
+                                <p class="font-display text-3xl font-black text-cyan">100%</p>
+                                <p class="font-mono text-[11px] text-zinc-400 mt-1 uppercase tracking-wider">Ledger Data Integrity</p>
+                            </div>
+                            <div class="p-4 border border-white/5 bg-ink-900/60">
+                                <p class="font-display text-3xl font-black text-white">14%</p>
+                                <p class="font-mono text-[11px] text-zinc-400 mt-1 uppercase tracking-wider">Margin Leak Identified</p>
+                            </div>
+                            <div class="p-4 border border-white/5 bg-ink-900/60">
+                                <p class="font-display text-3xl font-black text-neon-lime">Zero-Touch</p>
+                                <p class="font-mono text-[11px] text-zinc-400 mt-1 uppercase tracking-wider">Auto Email &amp; Cleaning</p>
+                            </div>
                         </div>
                         
-                        <div class="mt-12 pt-8 border-t border-white/10">
+                        <div class="mt-10 pt-8 border-t border-white/10">
                             <p class="label-mono mb-4">[ education_certs.json ]</p>
-                            <h3 class="font-mono text-xl text-zinc-200 mb-6 uppercase tracking-wider">Education & Credentials</h3>
-                            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-8 font-mono text-sm text-zinc-400">
+                            <h3 class="font-mono text-xl text-zinc-200 mb-6 uppercase tracking-wider">Education &amp; Verified Credentials</h3>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 font-mono text-sm text-zinc-400">
                                 <li>
-                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>B.Com (Hons)</div>
-                                    <div class="pl-6 text-xs text-zinc-500">DU SOL (Graduating late 2027)</div>
+                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>B.Com (Hons) — Commerce &amp; Analytics</div>
+                                    <div class="pl-6 text-xs text-zinc-500">University of Delhi (DU SOL · Graduating Late 2027)</div>
                                 </li>
                                 <li>
                                     <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>Data Analytics Certification</div>
@@ -230,24 +358,30 @@
                                     <div class="pl-6 text-xs text-zinc-500">Cisco Networking Academy <a href="https://i.postimg.cc/pTYfSBnC/cisco-DS-AI-into.png" target="_blank" rel="noopener noreferrer" class="text-neon-lime ml-1 hover:underline">[Verify]</a></div>
                                 </li>
                                 <li>
-                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>'O' Level Computer Cert.</div>
-                                    <div class="pl-6 text-xs text-zinc-500">MSME</div>
+                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>'O' Level IT Foundation Cert.</div>
+                                    <div class="pl-6 text-xs text-zinc-500">Ministry of MSME</div>
                                 </li>
                                 <li>
-                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>English Speaking Cert.</div>
-                                    <div class="pl-6 text-xs text-zinc-500">Freedom Employment Skills</div>
+                                    <div class="text-white mb-1"><span class="text-neon-lime mr-2">→</span>Professional English Communication</div>
+                                    <div class="pl-6 text-xs text-zinc-500">Freedom Employability Academy</div>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="col-span-12 md:col-span-4 border border-white/10 bg-ink-800 overflow-hidden hover-lift hover:border-neon-lime/40">
-                        <div class="relative h-full min-h-[350px]">
-                            <img alt="Mukul Shankar" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 absolute inset-0" src="https://i.postimg.cc/ZRWK7Dmw/Whats-App-Image-2026-05-08-at-1-21-46-AM.png">
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/10 to-transparent"></div>
-                            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
-                                <span class="label-mono text-white">Mukul S.</span>
-                                <span class="label-mono text-neon-lime">/ ANALYST</span>
+                    <!-- PROFILE CARD (Strictly "Mukul") -->
+                    <div class="col-span-12 md:col-span-4 border border-white/10 bg-ink-800 overflow-hidden hover-lift hover:border-neon-lime/40 flex flex-col justify-between">
+                        <div class="relative h-full min-h-[420px]">
+                            <img alt="Mukul" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 absolute inset-0" src="https://i.postimg.cc/ZRWK7Dmw/Whats-App-Image-2026-05-08-at-1-21-46-AM.png">
+                            <div class="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/20 to-transparent"></div>
+                            <div class="absolute bottom-5 left-5 right-5 z-10">
+                                <div class="flex items-center justify-between border-b border-white/15 pb-3 mb-3">
+                                    <span class="font-display text-2xl font-bold text-white tracking-tight">Mukul</span>
+                                    <span class="label-mono text-neon-lime">/ MIS &amp; DATA ARCHITECT</span>
+                                </div>
+                                <p class="font-mono text-[11px] text-zinc-400 leading-relaxed">
+                                    Building BCI-aligned FMS/FSS workflows, Financial Management Systems, and automated data pipelines in New Delhi.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -255,6 +389,7 @@
             </div>
         </section>
 
+        <!-- SECTION 02: THE STACK -->
         <section id="skills" data-testid="skills-section" class="relative border-t border-white/10 overflow-hidden">
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
                 <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
@@ -262,54 +397,223 @@
                         <p class="label-mono mb-3">[ Section · 02 ]</p>
                         <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">The <span class="text-neon">Stack</span></h2>
                     </div>
-                    <p class="hidden md:block label-mono">/ skills.json</p>
+                    <p class="hidden md:block label-mono">/ capabilities_matrix.json</p>
                 </div>
+
                 <div class="grid grid-cols-12 gap-6">
-                    <div class="col-span-12 lg:col-span-4 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:bg-ink-700 transition-colors">
-                        <p class="label-mono mb-4 text-neon-lime">/ Core</p>
+                    <!-- Column 1: MIS & Business Automation -->
+                    <div class="col-span-12 md:col-span-6 lg:col-span-3 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:border-neon-lime/40 transition-colors">
+                        <p class="label-mono mb-4 text-neon-lime">/ 01 · MIS &amp; BCI Systems</p>
                         <ul class="space-y-3 font-mono text-sm text-zinc-200">
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>SQL (SSMS)</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Python</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>NumPy & Pandas</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Advanced Excel</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Pivot Tables</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>FMS &amp; FSS Architecture</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Financial Mgmt Systems</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Google Sheets Canvas</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Google Apps Script (GAS)</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Delegation &amp; MeCA Sheets</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Rahul Jain BCI Frameworks</span><span class="text-neon-lime text-xs">●</span></li>
                         </ul>
                     </div>
-                    <div class="col-span-12 lg:col-span-4 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:bg-ink-700 transition-colors">
-                        <p class="label-mono mb-4 text-neon-lime">/ Visualization & Ingestion</p>
+
+                    <!-- Column 2: Data Science & Querying -->
+                    <div class="col-span-12 md:col-span-6 lg:col-span-3 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:border-cyan/40 transition-colors">
+                        <p class="label-mono mb-4 text-cyan">/ 02 · Data &amp; Querying</p>
                         <ul class="space-y-3 font-mono text-sm text-zinc-200">
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Power BI</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Matplotlib & Seaborn</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Streamlit Apps</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Live Data Ingestion</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>SQL (SSMS / Relational)</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Python (Pandas / NumPy)</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>OCR &amp; Fuzzy Matching</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Advanced Excel (VBA/Macros)</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>XLOOKUP &amp; Dynamic Arrays</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Busy &amp; Tally Prime ERP</span><span class="text-cyan text-xs">●</span></li>
                         </ul>
                     </div>
-                    <div class="col-span-12 lg:col-span-4 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:bg-ink-700 transition-colors">
-                        <p class="label-mono mb-4 text-neon-lime">/ Hardware & Systems</p>
+
+                    <!-- Column 3: BI & Visualization -->
+                    <div class="col-span-12 md:col-span-6 lg:col-span-3 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:border-neon-lime/40 transition-colors">
+                        <p class="label-mono mb-4 text-neon-lime">/ 03 · Visualization &amp; BI</p>
                         <ul class="space-y-3 font-mono text-sm text-zinc-200">
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>PC Building</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>System Troubleshooting</span><span class="text-zinc-600 text-xs">●</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Hardware Benchmarking</span><span class="text-zinc-600 text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Power BI (DAX / Modeling)</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Sheets Canvas Dashboards</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Streamlit Web Apps</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Matplotlib &amp; Seaborn</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Live KPI Telemetry</span><span class="text-neon-lime text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Executive SLA Reporting</span><span class="text-neon-lime text-xs">●</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Systems & Hardware -->
+                    <div class="col-span-12 md:col-span-6 lg:col-span-3 border border-white/10 bg-ink-800 p-6 lg:p-8 hover:border-cyan/40 transition-colors">
+                        <p class="label-mono mb-4 text-cyan">/ 04 · Systems &amp; Lab</p>
+                        <ul class="space-y-3 font-mono text-sm text-zinc-200">
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>PC Architecture &amp; Builds</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Kali Linux &amp; VirtualBox</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Hardware Benchmarking</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>Micro-Soldering &amp; Audio Mods</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>OBS Studio &amp; Media Workflows</span><span class="text-cyan text-xs">●</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2"><span>System Diagnostics</span><span class="text-cyan text-xs">●</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" data-testid="projects-section" class="relative border-t border-white/10">
+        <!-- SECTION 03: FREELANCE & WORKFLOW AUTOMATION SERVICES -->
+        <section id="automation" data-testid="automation-section" class="relative border-t border-white/10 bg-ink-800/40">
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
-                <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 mb-12 gap-4">
                     <div>
-                        <p class="label-mono mb-3">[ Section · 03 ]</p>
-                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">Selected <span class="text-neon">Work</span></h2>
+                        <p class="label-mono mb-3 text-cyan">[ Section · 03 · Freelance Solutions ]</p>
+                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">Workflow <span class="text-cyan">Automation</span><span class="text-neon">.</span></h2>
+                    </div>
+                    <p class="font-mono text-xs text-zinc-400 max-w-md">
+                        Eliminating repetitive manual work for law firms, agencies, and growing enterprises using custom code and BCI-grade spreadsheet architecture.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Service 1 -->
+                    <div class="border border-white/10 bg-ink-800 p-8 flex flex-col justify-between hover-lift hover:border-neon-lime/50">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="font-mono text-xs text-neon-lime px-2.5 py-1 border border-neon-lime/30 bg-neon-lime/5">AUTO_01</span>
+                                <span class="font-mono text-xs text-zinc-500">GAS / SMTP</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Auto Email &amp; Alert Scheduling</h3>
+                            <p class="font-mono text-xs text-zinc-400 leading-relaxed">
+                                Custom Google Apps Script dispatchers that automatically trigger personalized client follow-ups, daily MIS digests, payment reminders, and SLA breach notifications on schedule.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 font-mono text-[11px] text-neon-lime">
+                            → Zero manual follow-up required
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="border border-white/10 bg-ink-800 p-8 flex flex-col justify-between hover-lift hover:border-cyan/50">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="font-mono text-xs text-cyan px-2.5 py-1 border border-cyan/30 bg-cyan/5">AUTO_02</span>
+                                <span class="font-mono text-xs text-zinc-500">BCI / FMS / FSS</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Delegation &amp; FMS Engines</h3>
+                            <p class="font-mono text-xs text-zinc-400 leading-relaxed">
+                                End-to-end Flow Management Systems (FMS), Financial Management Systems, and Delegation Sheets inspired by Rahul Jain BCI principles—complete with Planned vs. Actual timestamps and custom UI sidebars.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 font-mono text-[11px] text-cyan">
+                            → 100% team accountability tracking
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="border border-white/10 bg-ink-800 p-8 flex flex-col justify-between hover-lift hover:border-neon-lime/50">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="font-mono text-xs text-neon-lime px-2.5 py-1 border border-neon-lime/30 bg-neon-lime/5">AUTO_03</span>
+                                <span class="font-mono text-xs text-zinc-500">PYTHON / VBA</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Automated Data Cleaning</h3>
+                            <p class="font-mono text-xs text-zinc-400 leading-relaxed">
+                                One-click Python, SQL, and Excel Macro pipelines that ingest messy ERP/CRM exports, strip duplicates, standardize formats, fuzzy-match records, and output audit-ready master tables.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 font-mono text-[11px] text-neon-lime">
+                            → Cuts 4+ hours of daily prep to seconds
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="border border-white/10 bg-ink-800 p-8 flex flex-col justify-between hover-lift hover:border-cyan/50">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="font-mono text-xs text-cyan px-2.5 py-1 border border-cyan/30 bg-cyan/5">AUTO_04</span>
+                                <span class="font-mono text-xs text-zinc-500">CANVAS / BI</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Live Dashboard Generation</h3>
+                            <p class="font-mono text-xs text-zinc-400 leading-relaxed">
+                                Executive command centers built on Google Sheets Canvas, Power BI, and Excel that auto-refresh with live operational KPIs, cash-flow metrics, and departmental scorecards.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 font-mono text-[11px] text-cyan">
+                            → Real-time decision visibility
+                        </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
-                    <!-- PROJECT 01: LIVE DATA PIPELINE -->
-                    <a href="https://github.com/justmemukul/ECommerce-Live-Data-Pipeline" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+
+                <!-- Freelance CTA Banner -->
+                <div class="mt-10 border border-neon-lime/30 bg-ink-900 p-6 lg:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div>
+                        <p class="font-mono text-xs uppercase tracking-[0.2em] text-neon-lime mb-1">&gt;_ Need a custom business system or repetitive task automated?</p>
+                        <p class="font-mono text-sm text-zinc-300">Available for freelance MIS setup, BCI-style FMS/Delegation sheets, and Python/SQL automation scripts.</p>
+                    </div>
+                    <a href="https://wa.me/919310125549" target="_blank" rel="noopener noreferrer" class="shrink-0 px-6 py-3 bg-neon-lime text-ink-900 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-colors">
+                        Book a Consult on WhatsApp ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04: SELECTED WORK & PROJECTS -->
+        <section id="projects" data-testid="projects-section" class="relative border-t border-white/10">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between border-b border-white/10 pb-6 mb-12 gap-6">
+                    <div>
+                        <p class="label-mono mb-3">[ Section · 04 ]</p>
+                        <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight">Selected <span class="text-neon">Work</span></h2>
+                    </div>
+
+                    <!-- Interactive Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 font-mono text-[11px] tracking-[0.18em]">
+                        <button onclick="filterProjects('all', this)" class="filter-btn active px-3.5 py-2 border border-white/15 uppercase transition-colors">ALL (7)</button>
+                        <button onclick="filterProjects('automation', this)" class="filter-btn px-3.5 py-2 border border-white/15 text-zinc-400 hover:text-white uppercase transition-colors">MIS &amp; AUTOMATION</button>
+                        <button onclick="filterProjects('python', this)" class="filter-btn px-3.5 py-2 border border-white/15 text-zinc-400 hover:text-white uppercase transition-colors">PYTHON &amp; ML</button>
+                        <button onclick="filterProjects('bi', this)" class="filter-btn px-3.5 py-2 border border-white/15 text-zinc-400 hover:text-white uppercase transition-colors">SQL &amp; BI</button>
+                    </div>
+                </div>
+
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- NEW PROJECT A: ENTERPRISE MIS, FMS & GOOGLE SHEETS CANVAS SUITE -->
+                    <div data-category="automation bi" class="project-card group bg-ink-800 hover:bg-ink-700 border border-neon-lime/30 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
                         <div class="flex items-start justify-between mb-8">
-                            <span class="font-mono text-xs text-zinc-500">[ 01 ]</span>
+                            <span class="font-mono text-xs text-neon-lime">[ 01 · PRODUCTION SYSTEM @ AM LEGAL ]</span>
+                            <span class="font-mono text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 bg-neon-lime/10 text-neon-lime border border-neon-lime/30">LIVE ARCHITECTURE</span>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Enterprise FMS, Financial &amp; Delegation Suite</h3>
+                        <p class="mt-2 font-mono text-sm text-cyan">BCI-Aligned Flow Management &amp; Google Sheets Canvas Command Center</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">
+                            Architected a multi-tab operational ecosystem combining a <strong>10-Milestone Flow Management System (FMS)</strong>, <strong>FSS</strong>, <strong>Financial Management System</strong>, and <strong>Master Delegation Engine</strong> inspired by Rahul Jain's BCI methodology.<br><br>
+                            <strong>Key Capabilities:</strong> Custom Google Apps Script live control sidebar, automated Planned-vs-Actual SLA scoring, auto-scheduled email reminders, and real-time executive KPI dashboards built on <strong>Google Sheets Canvas</strong>.
+                        </p>
+                        <div class="mt-auto pt-8 flex flex-wrap gap-2">
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">GOOGLE APPS SCRIPT</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">SHEETS CANVAS</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">FMS / FSS / BCI</span>
+                        </div>
+                    </div>
+
+                    <!-- NEW PROJECT B: PYTHON OCR & FUZZY-MATCHING DOCUMENT AUTOMATION -->
+                    <div data-category="python automation" class="project-card group bg-ink-800 hover:bg-ink-700 border border-cyan/30 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                        <div class="flex items-start justify-between mb-8">
+                            <span class="font-mono text-xs text-cyan">[ 02 · PYTHON AUTOMATION ENGINE ]</span>
+                            <span class="font-mono text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 bg-cyan/10 text-cyan border border-cyan/30">OCR + FUZZY MATCH</span>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Intelligent Case Document OCR Sorter</h3>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Automated PDF extraction, fuzzy matching &amp; directory routing</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">
+                            Built a local Python automation pipeline utilizing <strong>PyMuPDF</strong> and <strong>Tesseract OCR</strong> to scan unstructured legal case PDFs, extract party and case identifiers, and cross-reference them against master CSV records using fuzzy string matching.<br><br>
+                            <strong>Operational Impact:</strong> Eliminated manual file sorting by automatically classifying, renaming, and routing hundreds of case documents into structured client directories with full audit logging.
+                        </p>
+                        <div class="mt-auto pt-8 flex flex-wrap gap-2">
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-cyan/40 group-hover:text-cyan transition-colors">PYTHON (PYMUPDF / OCR)</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-cyan/40 group-hover:text-cyan transition-colors">FUZZY MATCHING</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-cyan/40 group-hover:text-cyan transition-colors">PANDAS</span>
+                        </div>
+                    </div>
+                    
+                    <!-- ORIGINAL PROJECT 01: LIVE DATA PIPELINE -->
+                    <a data-category="python bi" href="https://github.com/justmemukul/ECommerce-Live-Data-Pipeline" target="_blank" rel="noopener noreferrer" class="project-card group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                        <div class="flex items-start justify-between mb-8">
+                            <span class="font-mono text-xs text-zinc-500">[ 03 ]</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                         </div>
                         <h3 class="font-display text-3xl font-bold tracking-tight text-white">E-Commerce Live Pipeline</h3>
@@ -322,15 +626,15 @@
                         </div>
                     </a>
                     
-                    <!-- PROJECT 02: HEALTHCARE RISK APP -->
-                    <a href="https://mukul-health-risk.streamlit.app/" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                    <!-- ORIGINAL PROJECT 02: HEALTHCARE RISK APP -->
+                    <a data-category="python" href="https://mukul-health-risk.streamlit.app/" target="_blank" rel="noopener noreferrer" class="project-card group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
                         <div class="flex items-start justify-between mb-8">
-                            <span class="font-mono text-xs text-zinc-500">[ 02 ]</span>
+                            <span class="font-mono text-xs text-zinc-500">[ 04 ]</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                         </div>
                         <h3 class="font-display text-3xl font-bold tracking-tight text-white">Healthcare Risk App</h3>
-                        <p class="mt-2 font-mono text-sm text-zinc-400">Predictive modeling & interactive application</p>
-                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Built and deployed a machine learning web application using Streamlit to predict patient healthcare risks. Successfully identified key risk factors, enabling highly accurate risk stratification for early data-driven medical intervention.<br><br><span class="text-neon-lime group-hover:text-white transition-colors">GitHub: justmemukul/healthcare-risk-app</span></p>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Predictive modeling &amp; interactive application</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Built and deployed a machine learning web application using Streamlit to predict patient healthcare risks. Successfully identified key risk factors, enabling highly accurate risk stratification for early data-driven medical intervention.<br><br><span class="text-neon-lime group-hover:text-white transition-colors">Live App: mukul-health-risk.streamlit.app</span></p>
                         <div class="mt-auto pt-8 flex flex-wrap gap-2">
                             <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">PYTHON</span>
                             <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">STREAMLIT</span>
@@ -338,47 +642,48 @@
                         </div>
                     </a>
 
-                    <!-- PROJECT 03: RETAIL SALES ANALYSIS -->
-                    <a href="https://github.com/justmemukul/retail_sales_dashboard" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                    <!-- ORIGINAL PROJECT 03: RETAIL SALES ANALYSIS -->
+                    <a data-category="bi automation" href="https://github.com/justmemukul/retail_sales_dashboard" target="_blank" rel="noopener noreferrer" class="project-card group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
                         <div class="flex items-start justify-between mb-8">
-                            <span class="font-mono text-xs text-zinc-500">[ 03 ]</span>
+                            <span class="font-mono text-xs text-zinc-500">[ 05 ]</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                         </div>
-                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Retail Sales Analysis</h3>
-                        <p class="mt-2 font-mono text-sm text-zinc-400">Comprehensive view of revenue and operations</p>
-                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Built an interactive dashboard to track key retail metrics, using Excel Pivot Tables and SQL to identify trends and streamline reporting.</p>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Retail Sales Analysis Dashboard</h3>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Automated Excel VBA &amp; SQL revenue tracking</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Built an interactive dashboard to track key retail metrics using Advanced Excel (Pivot Tables, VBA, Macros) and SQL to identify revenue drivers and automate recurring report compilation.</p>
                         <div class="mt-auto pt-8 flex flex-wrap gap-2">
                             <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">SQL</span>
-                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">EXCEL</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">ADVANCED EXCEL (VBA)</span>
                         </div>
                     </a>
 
-                    <!-- PROJECT 04: UBER CUSTOMER DATA ANALYSIS -->
-                    <a href="https://github.com/justmemukul/Uber-Data-Analysis-2025" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                    <!-- ORIGINAL PROJECT 04: UBER CUSTOMER DATA ANALYSIS -->
+                    <a data-category="bi" href="https://github.com/justmemukul/Uber-Data-Analysis-2025" target="_blank" rel="noopener noreferrer" class="project-card group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
                         <div class="flex items-start justify-between mb-8">
-                            <span class="font-mono text-xs text-zinc-500">[ 04 ]</span>
+                            <span class="font-mono text-xs text-zinc-500">[ 06 ]</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                         </div>
                         <h3 class="font-display text-3xl font-bold tracking-tight text-white">Uber Customer Data Analysis</h3>
                         <p class="mt-2 font-mono text-sm text-zinc-400">Behavioral insights from ride-sharing data (2025)</p>
-                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Analyzed behavioral insights from 2025 Uber ride data, identifying patterns and key trends in a multi-state operational area.</p>
+                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Analyzed demographic, geographic, and behavioral insights from 2025 Uber ride datasets in Power BI, mapping peak usage windows and multi-state operational patterns.</p>
                         <div class="mt-auto pt-8 flex flex-wrap gap-2">
                             <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">POWER BI</span>
                             <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">DATA VISUALIZATION</span>
                         </div>
                     </a>
 
-                    <!-- PROJECT 05: SQL INSIGHTS -->
-                    <a href="https://github.com/justmemukul/sql_project-retail-sales-" target="_blank" rel="noopener noreferrer" class="group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full border-t border-white/10">
-                        <div class="flex items-start justify-between mb-8">
-                            <span class="font-mono text-xs text-zinc-500">[ 05 ]</span>
+                    <!-- ORIGINAL PROJECT 05: SQL INSIGHTS -->
+                    <a data-category="bi" href="https://github.com/justmemukul/sql_project-retail-sales-" target="_blank" rel="noopener noreferrer" class="project-card md:col-span-2 group bg-ink-800 hover:bg-ink-700 border border-white/10 transition-colors p-8 lg:p-10 flex flex-col hover-lift h-full">
+                        <div class="flex items-start justify-between mb-6">
+                            <span class="font-mono text-xs text-zinc-500">[ 07 ]</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-zinc-500 group-hover:text-neon-lime group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                         </div>
-                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Finding Insights from Database</h3>
-                        <p class="mt-2 font-mono text-sm text-zinc-400">Database analysis and extraction</p>
-                        <p class="mt-6 font-mono text-sm text-zinc-300 leading-relaxed">Leveraged complex SQL queries to extract meaningful insights and patterns from a retail sales database, aiding in data-driven strategy.</p>
+                        <h3 class="font-display text-3xl font-bold tracking-tight text-white">Relational Database Auditing &amp; SQL Insights</h3>
+                        <p class="mt-2 font-mono text-sm text-zinc-400">Complex SSMS querying, anomaly verification &amp; pattern extraction</p>
+                        <p class="mt-4 font-mono text-sm text-zinc-300 leading-relaxed max-w-4xl">Engineered complex SQL queries in SSMS to extract, audit, and validate large-scale retail sales databases—identifying historical customer buying patterns, reconciling transactional discrepancies, and supporting executive strategy.</p>
                         <div class="mt-auto pt-8 flex flex-wrap gap-2">
-                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">SQL</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">SQL (SSMS)</span>
+                            <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">DATABASE AUDITING</span>
                             <span class="font-mono text-[10px] tracking-[0.22em] uppercase px-3 py-1.5 border border-white/10 text-zinc-400 group-hover:border-neon-lime/40 group-hover:text-neon-lime transition-colors">DATA EXTRACTION</span>
                         </div>
                     </a>
@@ -386,15 +691,61 @@
             </div>
         </section>
 
+        <!-- SECTION 05: CAREER LOG / EXPERIENCE -->
         <section id="experience" data-testid="experience-section" class="relative border-t border-white/10">
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
                 <div class="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
                     <div>
-                        <p class="label-mono mb-3">[ Section · 04 ]</p>
+                        <p class="label-mono mb-3">[ Section · 05 ]</p>
                         <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight"><span class="text-neon">git</span> log --career</h2>
                     </div>
+                    <p class="hidden md:block label-mono">HEAD -&gt; main (AM_Legal_Services)</p>
                 </div>
-                <ol class="relative border-l border-white/10 pl-8 lg:pl-12 space-y-14">
+
+                <ol class="relative border-l border-white/10 pl-8 lg:pl-12 space-y-16">
+                    
+                    <!-- CURRENT ROLE: AM LEGAL SERVICES -->
+                    <li class="relative">
+                        <span class="absolute -left-[37px] lg:-left-[49px] top-1.5 w-3.5 h-3.5 border-2 border-neon-lime bg-neon-lime rotate-45 shadow-[0_0_15px_#ccff00]"></span>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 mb-2 bg-neon-lime/10 border border-neon-lime/40 text-neon-lime font-mono text-[11px] uppercase tracking-[0.2em]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-neon-lime animate-ping"></span>Active Role · Sep 2026 – Present
+                        </div>
+                        <h3 class="font-display text-3xl lg:text-4xl font-bold tracking-tight mt-2 text-white">MIS Executive &amp; Systems Architect</h3>
+                        <p class="mt-1 font-mono text-xs text-zinc-400 uppercase tracking-[0.22em]">AM Legal Services — New Delhi, IN</p>
+                        <ul class="mt-5 space-y-3 max-w-3xl">
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3">
+                                <span class="text-neon-lime select-none">→</span>
+                                <span><strong>FMS, FSS &amp; BCI Systems Implementation:</strong> Designing and maintaining end-to-end <strong>Flow Management Systems (FMS)</strong>, <strong>FSS</strong>, and <strong>Delegation Tracking Engines</strong> modeled on <strong>Rahul Jain's Business Coaching India (BCI)</strong> operational methodologies.</span>
+                            </li>
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3">
+                                <span class="text-neon-lime select-none">→</span>
+                                <span><strong>Financial Management Systems &amp; Canvas Dashboards:</strong> Building automated financial tracking sheets and interactive <strong>Google Sheets Canvas</strong> dashboards to monitor case velocity, billing reconciliations, and SLA compliance in real time.</span>
+                            </li>
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3">
+                                <span class="text-neon-lime select-none">→</span>
+                                <span><strong>Workflow &amp; Document Automation:</strong> Engineering Google Apps Script triggers for automated email scheduling, live task sidebars, and Python OCR + fuzzy-matching pipelines to classify and organize legal case documentation.</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- FREELANCE AUTOMATION CONSULTANT -->
+                    <li class="relative">
+                        <span class="absolute -left-[37px] lg:-left-[49px] top-1.5 w-3 h-3 border border-cyan bg-ink-900 rotate-45"></span>
+                        <p class="label-mono text-cyan">Independent Practice · 2025 – Present</p>
+                        <h3 class="font-display text-3xl lg:text-4xl font-bold tracking-tight mt-3 text-white">Freelance MIS &amp; Workflow Automation Specialist</h3>
+                        <p class="mt-1 font-mono text-xs text-zinc-500 uppercase tracking-[0.22em]">Remote / Delhi NCR — Client Solutions</p>
+                        <ul class="mt-5 space-y-3 max-w-3xl">
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3">
+                                <span class="text-cyan select-none">→</span>
+                                <span>Automating repetitive operational tasks for businesses, including <strong>auto email scheduling</strong>, <strong>smart delegation sheets</strong>, <strong>automated data cleaning pipelines</strong>, and <strong>one-click KPI dashboard generation</strong>.</span>
+                            </li>
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3">
+                                <span class="text-cyan select-none">→</span>
+                                <span>Deploying custom Google Apps Script extensions, Advanced Excel VBA macros, and interactive Power BI/Streamlit tools tailored to client workflows.</span>
+                            </li>
+                        </ul>
+                    </li>
+
                     <!-- JOB SIMULATION: BCG X -->
                     <li class="relative">
                         <span class="absolute -left-[37px] lg:-left-[49px] top-1 w-3 h-3 border border-cyan bg-ink-900 rotate-45"></span>
@@ -422,26 +773,29 @@
                     <!-- WORK EXPERIENCE: STOCK MANAGER -->
                     <li class="relative">
                         <span class="absolute -left-[37px] lg:-left-[49px] top-1 w-3 h-3 border border-neon-lime bg-ink-900 rotate-45"></span>
-                        <p class="label-mono text-neon-lime">1 Year, 8 Months</p>
-                        <h3 class="font-display text-3xl lg:text-4xl font-bold tracking-tight mt-3">Stock Manager</h3>
-                        <p class="mt-1 font-mono text-xs text-zinc-500 uppercase tracking-[0.22em]">Goura Enterprises — Delhi</p>
+                        <p class="label-mono text-neon-lime">May 2024 – Nov 2025 (1 Year, 7 Months)</p>
+                        <h3 class="font-display text-3xl lg:text-4xl font-bold tracking-tight mt-3">Stock &amp; Inventory Administrator</h3>
+                        <p class="mt-1 font-mono text-xs text-zinc-500 uppercase tracking-[0.22em]">Goura Enterprises — Delhi, IN</p>
                         <ul class="mt-5 space-y-3 max-w-3xl">
-                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3"><span class="text-neon-lime select-none">→</span>Managed daily inventory operations, ensuring high accuracy and reducing stock discrepancies.</li>
-                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3"><span class="text-neon-lime select-none">→</span>Optimized supply chain reporting by standardizing data collection and tracking methods.</li>
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3"><span class="text-neon-lime select-none">→</span>Conducted daily ledger reconciliations and investigative audits across high-volume inventory databases using Advanced Excel and Busy/Tally ERP, maintaining 100% record accuracy.</li>
+                            <li class="font-mono text-sm text-zinc-300 leading-relaxed flex gap-3"><span class="text-neon-lime select-none">→</span>Streamlined reverse logistics (RMA) tracking workflows and standardized dispatch reporting, improving service turnaround time by 10%.</li>
                         </ul>
                     </li>
                 </ol>
             </div>
         </section>
 
+        <!-- SECTION 06: CONTACT -->
         <section id="contact" data-testid="contact-section" class="relative border-t border-white/10 bg-ink-900 overflow-hidden">
             <div class="absolute inset-0 grid-bg opacity-30"></div>
             <div class="max-w-[1400px] mx-auto px-6 lg:px-10 pt-24 lg:pt-32 pb-12 relative z-10">
                 
                 <div class="mb-16">
-                    <p class="label-mono mb-4">[ Section · 05 · execute_query() ]</p>
-                    <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight text-white">Let's build <br><span class="text-neon">something data-driven</span>.</h2>
-                    <p class="mt-6 font-mono text-sm text-zinc-400 max-w-xl leading-relaxed">Whether you need help with operational analytics, robust SQL data extraction, or a complete pipeline overhaul, I'm ready to turn your raw data into strategy.</p>
+                    <p class="label-mono mb-4">[ Section · 06 · execute_query() ]</p>
+                    <h2 class="font-display text-5xl lg:text-7xl font-bold tracking-tight text-white">Let's build <br><span class="text-neon">automated systems</span> &amp; <span class="text-cyan">clarity</span>.</h2>
+                    <p class="mt-6 font-mono text-sm text-zinc-400 max-w-2xl leading-relaxed">
+                        Whether you need a BCI-style <strong>FMS / Delegation architecture</strong>, custom <strong>Google Sheets Canvas dashboards</strong>, <strong>automated email &amp; data cleaning scripts</strong>, or a full-time <strong>Data / Financial / MIS Analyst</strong>—let's connect.
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -449,7 +803,7 @@
                     <a href="https://wa.me/919310125549" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                         <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">WhatsApp</span>
-                        <span class="font-mono text-[10px] mt-1 opacity-70">9310125549</span>
+                        <span class="font-mono text-[10px] mt-1 opacity-70">+91 9310125549</span>
                     </a>
 
                     <a href="mailto:shankarmukul87@gmail.com" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
@@ -461,23 +815,68 @@
                     <a href="https://www.linkedin.com/in/mukul-shankar/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                         <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">LinkedIn</span>
-                        <span class="font-mono text-[10px] mt-1 opacity-70">Connect</span>
+                        <span class="font-mono text-[10px] mt-1 opacity-70">Connect with Mukul</span>
                     </a>
 
                     <a href="https://github.com/justmemukul" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 border border-white/10 bg-ink-800 hover:bg-neon-lime hover:text-ink-900 transition-all hover-lift h-40">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 group-hover:scale-110 transition-transform"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
                         <span class="font-mono text-xs tracking-[0.2em] uppercase font-semibold">GitHub</span>
-                        <span class="font-mono text-[10px] mt-1 opacity-70">View Code</span>
+                        <span class="font-mono text-[10px] mt-1 opacity-70">@justmemukul</span>
                     </a>
 
                 </div>
                 
                 <div class="mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10 pt-6">
-                    <p class="font-mono text-xs text-zinc-500">© 2026 Mukul Shankar — All queries resolved.</p>
-                    <p class="font-mono text-[10px] tracking-[0.22em] uppercase text-zinc-600">END OF FILE — EOF · 0x1A</p>
+                    <p class="font-mono text-xs text-zinc-500">© 2026 Mukul — All queries resolved · Systems operational.</p>
+                    <p class="font-mono text-[10px] tracking-[0.22em] uppercase text-zinc-600">END OF FILE — EOF · v3.0 · 0x1A</p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+        }
+
+        // Project category filter
+        function filterProjects(category, btnElement) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('text-zinc-400');
+            });
+            btnElement.classList.add('active');
+            btnElement.classList.remove('text-zinc-400');
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                const cats = card.getAttribute('data-category') || '';
+                if (category === 'all' || cats.includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Live IST Clock in Hero Bar
+        function updateISTClock() {
+            const timeEl = document.getElementById('live-time');
+            if (!timeEl) return;
+            const now = new Date();
+            const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            timeEl.textContent = 'IST ' + now.toLocaleTimeString('en-US', options);
+        }
+        setInterval(updateISTClock, 1000);
+        updateISTClock();
+    </script>
 </body>
 </html>
